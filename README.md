@@ -3,9 +3,11 @@ Javascript based Sci-Fi MMO
 
 Sawtooth Design Core
 Not a full design doc!
+
 Core Idea of the Game
 Better players face more challenge.
 This allows players of differing skill levels to play together.
+
 Lesser Points of Interest
 You go to higher tier classes when you master classes.
 Higher tier classes are ‘cooler’ and have more interesting mechanics, but are overall weaker.
@@ -21,15 +23,14 @@ Playersf all skills and playstyles can play the same game together and have fun!
 Sawtooth Setting
 
 Spaceships/mechs
-ships/mechs are ‘generated’ by… energy/nanomachines/etc and ‘better’ ones have less powers BUT get more ‘points/resources’ for their ‘faction’ when they win. Trading power for EXP (but not exp for you) Bragging rights, got the most for my faction leaderboard. Garage of mechs!
-	Higher tier means more resources mined/picked up and therefore more gained when successfully finishing missions. Most of the gains go to the faction (which is hopefully a guild!)
+ships/mechs are ‘generated’ by… energy/nanomachines/etc and ‘better’ ones have less powers BUT get more ‘points/resources’ for their ‘faction’ when they win. Trading power for EXP (but not exp for you) Bragging rights, got the most for my faction leaderboard. Garage of mechs!	Higher tier means more resources mined/picked up and therefore more gained when successfully finishing missions. Most of the gains go to the faction (which is hopefully a guild!)
 
 Pros
-Cons
+
 Player customization of both abilities and cosmetics
 Fair number of visual resources
 
-
+Cons
 Hard to do with a simple art style
 Hard to convey the weakening thing
 
@@ -47,4 +48,5 @@ Full SciFi
 
 Sawtooth Results
 Things that Worked
+
 Things that Sucked
