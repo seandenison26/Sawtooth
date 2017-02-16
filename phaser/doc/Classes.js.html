@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>PhaserMMORPG Source: Classes.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
+
+</head>
+
+<body>
+<div class="container-fluid">
+	<div class="navbar navbar-fixed-top navbar-inverse">
+		<div class="navbar-inner">
+			<a class="brand" href="index.html">PhaserMMORPG</a>
+			<ul class="nav">
+				
+				<li class="dropdown">
+					<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b
+						class="caret"></b></a>
+
+					<ul class="dropdown-menu ">
+						
+						<li>
+							<a href="PhaserMMORPG.Avatar.html">PhaserMMORPG.Avatar</a>
+						</li>
+						
+
+					</ul>
+				</li>
+				
+			</ul>
+		</div>
+	</div>
+
+	<div class="row-fluid">
+
+		
+			<div class="span12">
+				
+				<div id="main">
+					
+
+
+		<h1 class="page-title">Source: Classes.js</h1>
+    
+<section>
+	<article>
+		<pre
+			class="sunlight-highlight-javascript linenums">var PhaserMMORPG = PhaserMMORPG || {};
+
+
+
+
+
+PhaserMMORPG.settings = {
+
+    player : {
+        walkSpeed : 150,
+        runSpeed : 300
+    },
+
+    keyboard : {
+        runKey : Phaser.Keyboard.SHIFT      
+    }
+
+};
+
+/**
+* The player controlled avatar
+*
+* @class PhaserMMORPG.Avatar
+* @constructor
+* @param {Phaser.Game} game - Reference to the current game instance.
+* @param {string} name - Avatar name that will be visible above it
+* @param {integer} initialX - Initial x coordinates. Defaults to 84
+* @param {integer} initialY - Initial y coordinates. Defaults to 48
+* @param {string} color - Color denotifying sprite tint
+*
+* @return {PhaserMMORPG.Avatar} Itself
+*/
+PhaserMMORPG.Avatar = function(game, name, initialX, initialY, color) {
+
+
+  /**
+  * @name PhaserMMORPG.Avatar#name
+  * @property {string} name - the name associated with this avatar. Matches the text above head
+  * @default
+  */  
+  this.name = name || 'Player name';
+
+  initialX = initialX || 84;
+
+  initialY = initialY || 48;
+
+  /**
+  * @name PhaserMMORPG.Avatar#mainSprite
+  * @property {Phaser.Sprite} mainSprite - the name that will be visible above 
+  */  
+  this.mainSprite = game.add.sprite(initialX, initialY, 'playerDude', 1);
+  
+  this.setColor('random');
+  
+  this.mainSprite.anchor.set(0.5, 0.5);
+
+  this.mainSprite.animations.add('left', [0, 1, 2, 3], 10, true);
+  this.mainSprite.animations.add('right', [5, 6, 7, 8], 10, true);
+  this.mainSprite.animations.add('up', [9, 12, 9, 13], 10, true);
+  this.mainSprite.animations.add('down', [4, 10, 4, 11], 10, true);
+
+  game.physics.enable(this.mainSprite, Phaser.Physics.ARCADE);
+
+
+  /**
+  * @name PhaserMMORPG.Avatar#avatarName
+  * @property {Phaser.Text} avatarName - the name that will be visible above 
+  */  
+  this.avatarName = game.add.text(0, -30, this.name , { font: '10px Arial', fill: '#444444', align: 'center' }); 
+  this.avatarName.anchor.setTo(0.5);
+  
+  
+    //player.body.setSize(100, 140, 2, 1);
+  this.mainSprite.body.collideWorldBounds = true;
+  this.mainSprite.body.setSize(10, 20, 0, 0);
+  
+  
+  this.mainSprite.addChild(this.avatarName);
+  
+  return this;
+
+}
+
+/**
+* Sets a tint on the avatar sprite from the available colors
+*
+* @method PhaserMMORPG.Avatar#setColor
+* @param {string} tintName - The tint to color the player avatar in. 
+*/
+PhaserMMORPG.Avatar.prototype.setColor = function (tintName) {
+  var tints = {
+      'pink' : 0xf000f0, 
+      'turquoise' : 0x00ffff, 
+      'green' : 0x00ff00, 
+      'orange' : 0xff7e3d,
+    }, tintsArray = ['pink','turquoise','green','orange'];  
+
+
+    if (tints[tintName]) {
+      this.mainSprite.tint = tints[tintName];
+
+    } else if (tintName === 'random') {
+      tintName = tintsArray[Math.floor(Math.random() * tintsArray.length)];
+      this.mainSprite.tint = tints[tintName];
+    } else {
+      return;      
+    }
+
+    this.mainSpriteColor = tintName;
+}
+
+/**
+* Walk upwards
+*
+* @method PhaserMMORPG.Avatar#walkUp
+*/
+PhaserMMORPG.Avatar.prototype.walkUp = function () {
+  this.mainSprite.body.velocity.y -= PhaserMMORPG.settings.player.walkSpeed;
+  this.playAnimation('up');
+  this.update('up');
+}
+
+PhaserMMORPG.Avatar.prototype.walkDown = function () {
+  this.mainSprite.body.velocity.y += PhaserMMORPG.settings.player.walkSpeed;
+  this.playAnimation('down');  
+  this.update('down');
+}
+
+PhaserMMORPG.Avatar.prototype.walkLeft = function () {
+  this.mainSprite.body.velocity.x -= PhaserMMORPG.settings.player.walkSpeed;
+  this.playAnimation('left');  
+  this.update('left');
+}
+
+PhaserMMORPG.Avatar.prototype.walkRight = function () {
+  this.mainSprite.body.velocity.x += PhaserMMORPG.settings.player.walkSpeed;
+  this.playAnimation('right');
+  this.update('right');
+}
+
+PhaserMMORPG.Avatar.prototype.runUp = function () {
+  this.mainSprite.body.velocity.y -= PhaserMMORPG.settings.player.runSpeed;
+  this.playAnimation('up', 20);
+  this.update('up');
+}
+
+PhaserMMORPG.Avatar.prototype.runDown = function () {
+  this.mainSprite.body.velocity.y += PhaserMMORPG.settings.player.runSpeed;
+  this.playAnimation('down', 20);  
+  this.update('down');
+}
+
+PhaserMMORPG.Avatar.prototype.runLeft = function () {
+  this.mainSprite.body.velocity.x -= PhaserMMORPG.settings.player.runSpeed;
+  this.playAnimation('left', 20);  
+  this.update('left');
+}
+
+PhaserMMORPG.Avatar.prototype.runRight = function () {
+  this.mainSprite.body.velocity.x += PhaserMMORPG.settings.player.runSpeed;
+  this.playAnimation('right', 20);
+  this.update('right');
+}
+
+PhaserMMORPG.Avatar.prototype.stopVelocity = function () {
+    this.mainSprite.body.velocity.y = 0;
+    this.mainSprite.body.velocity.x = 0;
+}
+
+PhaserMMORPG.Avatar.prototype.playAnimation = function (animationName) {
+  this.mainSprite.play(animationName);  
+}
+
+PhaserMMORPG.Avatar.prototype.stopAnimations = function () {
+  this.mainSprite.animations.stop();
+}
+
+PhaserMMORPG.Avatar.prototype.stopMovement = function () {
+  this.stopAnimations();
+  this.update();
+}
+
+PhaserMMORPG.Avatar.prototype.setX = function (x) {
+  this.mainSprite.x = x;
+}
+
+PhaserMMORPG.Avatar.prototype.setY = function (y) {
+  this.mainSprite.y = y;
+}
+
+PhaserMMORPG.Avatar.prototype.setName = function (name) {
+  this.name = name;
+  this.mainSpriteName.text = name;
+}
+
+PhaserMMORPG.Avatar.prototype.update = function (animationPlaying) {
+
+  var keys = {
+      x: this.mainSprite.position.x,
+      y: this.mainSprite.position.y,
+      animationPlaying : animationPlaying || null,
+      playerColor : this.mainSpriteColor || null//,
+      //playerName : this.name || 'Player name'
+  };
+
+  PhaserMMORPG.eurecaServer.handleKeys(keys);
+}
+
+PhaserMMORPG.Avatar.prototype.kill = function () {
+  this.mainSprite.kill();
+}
+</pre>
+	</article>
+</section>
+
+
+
+
+
+				</div>
+
+				<div class="clearfix"></div>
+				<footer>
+					
+					
+		<span class="copyright">
+		DocStrap Copyright © 2012-2014 The contributors to the JSDoc3 and DocStrap projects.
+		</span>
+					<br />
+					
+		<span class="jsdoc-message">
+		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a>
+		on Fri Jan 2nd 2015 using the <a
+			href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		</span>
+				</footer>
+			</div>
+
+			
+			<br clear="both">
+		</div>
+
+	</div>
+	<!--<script src="scripts/sunlight.js"></script>-->
+	<script src="scripts/docstrap.lib.js"></script>
+	<script src="scripts/bootstrap-dropdown.js"></script>
+	<script src="scripts/toc.js"></script>
+
+	<script>
+		$( function () {
+			$( "[id*='$']" ).each( function () {
+				var $this = $( this );
+
+				$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+			} );
+
+			$( "#toc" ).toc( {
+				anchorName  : function ( i, heading, prefix ) {
+					return $( heading ).attr( "id" ) || ( prefix + i );
+				},
+				selectors   : "h1,h2,h3,h4",
+				showAndHide : false,
+				scrollTo    : "100px"
+			} );
+
+			$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
+			$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+			$( '.dropdown-toggle' ).dropdown();
+//			$( ".tutorial-section pre, .readme-section pre" ).addClass( "sunlight-highlight-javascript" ).addClass( "linenums" );
+
+			$( ".tutorial-section pre, .readme-section pre" ).each( function () {
+				var $this = $( this );
+
+				var example = $this.find( "code" );
+				exampleText = example.html();
+				var lang = /{@lang (.*?)}/.exec( exampleText );
+				if ( lang && lang[1] ) {
+					exampleText = exampleText.replace( lang[0], "" );
+					example.html( exampleText );
+					lang = lang[1];
+				} else {
+					lang = "javascript";
+				}
+
+				if ( lang ) {
+
+					$this
+						.addClass( "sunlight-highlight-" + lang )
+						.addClass( "linenums" )
+						.html( example.html() );
+
+				}
+			} );
+
+			Sunlight.highlightAll( {
+				lineNumbers : true,
+				showMenu : true,
+				enableDoclinks : true
+			} );
+		} );
+	 </script>
+
+
+
+	<!--Navigation and Symbol Display-->
+	
+
+
+	<!--Google Analytics-->
+	
+
+</body>
+</html>
