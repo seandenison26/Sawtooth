@@ -1,7 +1,28 @@
 # Sawtooth
 Javascript based Sci-Fi MMO
 
+Sawtooth Charter
+================
+
+We…
+User Trello for our backlog
+Pull from near the top of the backlog
+Rework the backlog at will
+Write our code in Javascript (if at all possible)
+Write stories when we get an idea
+Break stories down as far as possible
+Use epics/stickers/labels etc to make sense of all those stories
+Write our code functionally using Redux/higher order functions/etc
+
+We don’t…
+Pull our own stories from review to done.
+Set deadlines
+Expect people to put this project before your real life
+
+
+
 Sawtooth Design Core
+=====================
 Not a full design doc!
 
 Core Idea of the Game
@@ -21,20 +42,22 @@ Playersf all skills and playstyles can play the same game together and have fun!
 
 
 Sawtooth Setting
-
+================
 Spaceships/mechs
 ships/mechs are ‘generated’ by… energy/nanomachines/etc and ‘better’ ones have less powers BUT get more ‘points/resources’ for their ‘faction’ when they win. Trading power for EXP (but not exp for you) Bragging rights, got the most for my faction leaderboard. Garage of mechs!	Higher tier means more resources mined/picked up and therefore more gained when successfully finishing missions. Most of the gains go to the faction (which is hopefully a guild!)
 
 Pros
-
+====
 Player customization of both abilities and cosmetics
 Fair number of visual resources
 
 Cons
+====
 Hard to do with a simple art style
 Hard to convey the weakening thing
 
 Core Gameplay Loop 0.1
+======================
 Pick Ship
 Join Party
 Get to pick up spot (fights!/Travels!)
@@ -47,6 +70,7 @@ Full SciFi
 
 
 Sawtooth Results
+
 Things that Worked
 
 Things that Sucked
