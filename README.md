@@ -2,6 +2,7 @@
 Javascript based Sci-Fi MMO
 
 Sawtooth Charter
+Google Doc:https://docs.google.com/document/d/1lZKVunQjOroZfiYlBgIX8wmS0pDgcHzakojYgcMXwGs/edit#heading=h.aptso0n83pil
 ================
 
 We…
