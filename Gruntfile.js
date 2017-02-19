@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
         // Metadata.
-        meta: {
+        meta: { //noNPM
             version: '0.2.0'
         },
         banner: '/*! PhaserMMORPG - v<%= meta.version %> - ' +
@@ -19,9 +19,9 @@ module.exports = function(grunt) {
             main: {
                 src: ['js/**/*.js', '!js/lib/**/*.js'],
                 dest: 'build/PhaserMMORPG.concat.js'
-            }
+            }a  ``
         },
-        jshint: {
+        jshint: { //noNPM
             main : ['js/**/*.js', '!js/lib/**/*.js'],
             options: {
                 browser: true,
@@ -38,9 +38,9 @@ module.exports = function(grunt) {
                 reporter:'jslint',
                 reporterOutput: 'jshint.xml'
             }
-            
 
-        },  
+
+        },
 
 
         uglify: {
@@ -51,18 +51,18 @@ module.exports = function(grunt) {
                 src: 'build/PhaserMMORPG.concat.js',
                 dest: 'build/PhaserMMORPG.min.js'
             }
-        },   
+        },
 
-        jsdoc : {
+        jsdoc : { //noNPM
             dist : {
-                src: ['js/**/*.js', '!js/lib/**/*.js'], 
+                src: ['js/**/*.js', '!js/lib/**/*.js'],
                 options: {
                     destination: 'doc',
                     template : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
                     configure : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template/jsdoc.conf.json"
                 }
             }
-        }    
+        }
 
     });
 
