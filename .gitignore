@@ -29,3 +29,6 @@ node_modules
 jshint.xml
 build/PhaserMMORPG.concat.js
 build/PhaserMMORPG.min.js
+
+# VIM .swp 
+*.swp
