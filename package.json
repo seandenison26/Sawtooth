@@ -20,8 +20,9 @@
     "url": "https://github.com/arcanous/phaser-mmorpg/issues"
   },
   "dependencies": {
-    "express": "~4.10.6",
     "engine.io": "~1.4.3",
-    "eureca.io": "~0.6.2"
+    "eureca.io": "~0.6.2",
+    "express": "~4.10.6",
+    "redux": "^3.7.2"
   }
 }
