@@ -6,12 +6,11 @@ const store = redux.createStore(reducers.bigDaddyReduce);
 
 store.subscribe(() => {console.log(store.getState())});
 
-store.dispatch({type:""});
-
 const app = express();
 
 app.get('/', function (req, res) {
-  res.send('Hello World!')
+	store.dispatch({type:"INCREASE_SERVER_CALLS"});
+	res.send(`This is call ${store.getState().serverCalls}!`);
 })
 
 app.listen(3000, function () {
