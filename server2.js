@@ -1,9 +1,10 @@
 const express = require("express");
-const react = require("redux");
+const redux = require("redux");
+
+const store = redux.createStore();
 
 const app = express();
 
-console.log(react.createStore);
 
 app.get('/', function (req, res) {
   res.send('Hello World!')
