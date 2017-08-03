@@ -4,7 +4,7 @@ const reducers = require("./reducers")
 
 const store = redux.createStore(reducers.bigDaddyReduce);
 
-store.subscribe((state)=>{console.log(state)});
+store.subscribe(() => {console.log(store.getState())});
 
 store.dispatch({type:""});
 
