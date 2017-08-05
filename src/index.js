@@ -12,7 +12,7 @@ function bigDaddyReduce (state = {clicks: 0, serverTotal: 0}, action) {
 	
 }
 
-function callServer() {
+window.callServer = function() {
 	store.dispatch({type:"INCREASE_CLICKS"})
 	
 	fetch('http:localhost:3000/INCREASE_SERVER_CALLS').then((response)=>response.json().then((action)=>{
@@ -30,4 +30,5 @@ function callServer() {
 }
 
 const store = Redux.createStore(bigDaddyReduce);
+
 

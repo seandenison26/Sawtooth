@@ -1,12 +1,14 @@
 {
   "name": "Sawtooth",
   "version": "0.0.0",
-  "description": "Phaser Based MMORPG",
+  "description": "Phaser Based MMO",
   "main": "sever.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server2",
-    "devstart": "nodemon server2"
+    "start": "",
+    "dev": "",
+    "babel": "babel --presets env src -o build",
+    "webpack": "webpack"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,10 @@
     "redux": "^3.7.2"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0"
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.6.0",
+    "nodemon": "^1.11.0",
+    "webpack": "^3.4.1"
   }
 }
