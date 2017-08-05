@@ -1,4 +1,4 @@
-
+import {createStore} from 'redux'
 
 function bigDaddyReduce (state = {clicks: 0, serverTotal: 0}, action) {
 				switch(action.type) {
@@ -29,6 +29,6 @@ window.callServer = function() {
 	cliMsg.innerHTML = `There have been ${store.getState().clicks} button clicks!`;	
 }
 
-const store = Redux.createStore(bigDaddyReduce);
+const store = createStore(bigDaddyReduce);
 
 
