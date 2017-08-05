@@ -754,9 +754,9 @@ function bigDaddyReduce() {
 	var action = arguments[1];
 
 	switch (action.type) {
-		case "INCREASE_CLICKS":
+		case 'INCREASE_CLICKS':
 			return Object.assign({}, state, { clicks: state.clicks + 1 });
-		case "SERVER_TOTAL":
+		case 'SERVER_TOTAL':
 			return Object.assign({}, state, { serverTotal: action.serverTotal });
 		default:
 			return state;
@@ -764,20 +764,20 @@ function bigDaddyReduce() {
 }
 
 window.callServer = function () {
-	store.dispatch({ type: "INCREASE_CLICKS" });
+	store.dispatch({ type: 'INCREASE_CLICKS' });
 
 	fetch('http:localhost:3000/INCREASE_SERVER_CALLS').then(function (response) {
 		return response.json().then(function (action) {
 
 			store.dispatch(JSON.parse(action));
 
-			var msg = document.getElementById("server-message");
-			msg.innerHTML = "There have been " + store.getState().serverTotal + " clicks sent to the server.";
+			var msg = document.getElementById('server-message');
+			msg.innerHTML = 'There have been ' + store.getState().serverTotal + ' clicks sent to the server.';
 		});
 	});
 
-	var cliMsg = document.getElementById("client-message");
-	cliMsg.innerHTML = "There have been " + store.getState().clicks + " button clicks!";
+	var cliMsg = document.getElementById('client-message');
+	cliMsg.innerHTML = 'There have been ' + store.getState().clicks + ' button clicks!';
 };
 
 var store = (0, _redux.createStore)(bigDaddyReduce);
