@@ -1,10 +1,33 @@
-function callServer() {
-	fetch('http:localhost:3000/poop').then((response)=>response.text().then((text)=>{
+
+
+function bigDaddyReduce (state = {clicks: 0, serverTotal: 0}, action) {
+				switch(action.type) {
+					case "INCREASE_CLICKS":
+						return Object.assign({}, state, {clicks: state.clicks + 1});
+					case "SERVER_TOTAL":
+						return Object.assign({}, state, {serverTotal: action.serverTotal});
+					default:
+						return state;
+				}
 	
-	console.log(text);
-	var msg = document.getElementById("server-message");
-	msg.innerHTML = text;
-	}));		
 }
 
+function callServer() {
+	store.dispatch({type:"INCREASE_CLICKS"})
+	
+	fetch('http:localhost:3000/INCREASE_SERVER_CALLS').then((response)=>response.json().then((action)=>{
+	
+
+
+	store.dispatch(JSON.parse(action));
+
+	var msg = document.getElementById("server-message");
+	msg.innerHTML = `There have been ${store.getState().serverTotal} clicks sent to the server.`;
+	}));
+
+	var cliMsg = document.getElementById("client-message");
+	cliMsg.innerHTML = `There have been ${store.getState().clicks} button clicks!`;	
+}
+
+const store = Redux.createStore(bigDaddyReduce);
 
